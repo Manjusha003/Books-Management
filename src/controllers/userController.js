@@ -63,6 +63,10 @@ const createUser = async function (req, res) {
                     status(400).
                     send({ status: false, message: "mobile number is invalid must be of 10 digits start from [6-9]" })
         }
+        if(!isValidPhone(phone))
+            return res.
+                status(400).
+                    send({status:false,msg:"mobile number is invalid must be of 10 digits start from [6-9]"})
         let duplicatePhone = await userModel.findOne({ phone: phone });
         if (duplicatePhone)
             return res.
